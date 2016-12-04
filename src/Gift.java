@@ -3,7 +3,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Gift {
-	private boolean isActive;
+	public boolean isActive;
 	
 	private Image img;
 	
