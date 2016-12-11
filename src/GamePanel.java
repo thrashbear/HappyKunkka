@@ -9,11 +9,13 @@ import java.io.*;
 public class GamePanel extends JPanel {
 	private Image bg, catcher;
 	
-	private int cPos;	// CatcherPOSition
+	private static int cPos;	// CatcherPOSition
 	
 	private Gift[] gifts;
 	
 	private int difficulty;
+
+	private Timer tmUpdate, tmDraw;
 	
 	public GamePanel(int difficulty){
 		loadRes();
@@ -21,7 +23,7 @@ public class GamePanel extends JPanel {
 		
 		this.difficulty = difficulty;
 		
-		Timer tmUpdate = new Timer(1500, new ActionListener(){
+		tmUpdate = new Timer(1500, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -32,7 +34,7 @@ public class GamePanel extends JPanel {
 		});
 		tmUpdate.start();
 		
-		Timer tmDraw = new Timer(50, new ActionListener(){
+		tmDraw = new Timer(50, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -77,6 +79,10 @@ public class GamePanel extends JPanel {
 		});
 	}
 	
+	public static int getCpos(){
+		return cPos;
+	}
+	
 	public void spawnGifts(){
 		int gCount = 0; //GiftCount
 		
@@ -94,12 +100,26 @@ public class GamePanel extends JPanel {
 		
 	}
 	
+	
+	
 	public void paintComponent(Graphics gr){
 		gr.drawImage(bg, 0, 0, 800, 600, null);
 		gr.drawImage(catcher, cPos, 410, 180, 170, null);
 		
 		for(int i=0; i<gifts.length; i++){
 			gifts[i].draw(gr);
+			
+			if(gifts[i].isActive){
+				if(gifts[i].getY() + 100 > 500){
+					if(Math.abs(gifts[i].getX()-cPos)>75){
+						tmUpdate.stop();
+						tmDraw.stop();
+						break;
+					} else {
+						gifts[i].isActive = false;
+					}
+				}
+			}
 		}
 		
 	}

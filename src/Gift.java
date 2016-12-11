@@ -22,9 +22,15 @@ public class Gift {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 				fall();
-			}
-			
+			}			
 		});
+	}
+	
+	public int getX(){
+		return x;
+	}
+	public int getY(){
+		return y;
 	}
 	
 	public void spawn(){
@@ -38,8 +44,9 @@ public class Gift {
 		if(isActive)
 			this.y+=6;
 		
-		if(y+img.getHeight(null)>=520) 
+		if(y+img.getHeight(null)>=520){ 
 			tmUpdate.stop();
+		}
 	}
 	
 	public void draw(Graphics gr){
