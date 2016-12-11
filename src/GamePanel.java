@@ -21,7 +21,7 @@ public class GamePanel extends JPanel {
 		
 		this.difficulty = difficulty;
 		
-		Timer tmUpdate = new Timer(3000, new ActionListener(){
+		Timer tmUpdate = new Timer(1500, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -109,7 +109,7 @@ public class GamePanel extends JPanel {
 			bg = ImageIO.read(new File("sprites\\bg.jpg"));
 			catcher = ImageIO.read(new File("sprites\\catcher.png"));
 			
-			gifts = new Gift[2];
+			gifts = new Gift[7];
 			
 			for(int i = 0; i < gifts.length; i++){
 				gifts[i] = new Gift(ImageIO.read(new File("sprites\\p"+i+".png")));

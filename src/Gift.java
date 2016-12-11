@@ -16,7 +16,7 @@ public class Gift {
 		this.isActive = false;
 		this.img = img;
 		
-		tmUpdate = new Timer(500, new ActionListener(){
+		tmUpdate = new Timer(60, new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -38,7 +38,7 @@ public class Gift {
 		if(isActive)
 			this.y+=6;
 		
-		if(y+img.getHeight(null)>=420) 
+		if(y+img.getHeight(null)>=520) 
 			tmUpdate.stop();
 	}
 	
